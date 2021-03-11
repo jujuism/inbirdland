@@ -1,0 +1,88 @@
+<style>
+    .bva .fullwidth {
+        background-image: url('{{ section.settings.image | img_url: 'master' }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .bva .fullwidth {
+            background-image: url('{{ section.settings.image_mobile | img_url: 'master' }}');
+        }
+    }
+</style>
+
+<div class="fullwidth {{ section.settings.text_alignment }}">
+    <div class="inner">
+        <div class="content" style="color: {{ section.settings.text_color }}">
+            <h1>{{ section.settings.title }}</h1>
+            <p style="color: {{ section.settings.text_color }}">{{ section.settings.copy }}</p>
+        </div>
+        <div class="buttons">
+            <a href="{{ section.settings.cta_url }}" class="btn--primary">{{ section.settings.cta_text }}</a>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "BVA Test",
+    "class": "bva",
+    "settings": [ 
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"        
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Mobile Image"        
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Title/Text Color"        
+        },
+        {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text Alignment",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"        
+        },
+        {
+            "type": "textarea",
+            "id": "copy",
+            "label": "Copy"
+        },
+        {
+            "type": "text",
+            "id": "cta_text",
+            "label": "CTA Text"
+        },
+        {
+            "type": "url",
+            "id": "cta_url",
+            "label": "CTA Url"
+        }
+    ]
+}
+{% endschema %}
